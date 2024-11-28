@@ -19,6 +19,15 @@
 {
   description = "Nix flake for acmsl/licdata-artifact-application";
   inputs = rec {
+    acmsl-licdata-artifact-domain = {
+      inputs.nixos.follows = "nixos";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.pythoneda-shared-pythonlang-banner.follows =
+        "pythoneda-shared-pythonlang-banner";
+      inputs.pythoneda-shared-pythonlang-domain.follows =
+        "pythoneda-shared-pythonlang-domain";
+      url = "github:acmsl-def/licdata-artifact-domain/0.0.8";
+    };
     acmsl-licdata-artifact-events = {
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
@@ -27,6 +36,15 @@
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
       url = "github:acmsl-def/licdata-artifact-events/0.0.8";
+    };
+    acmsl-licdata-artifact-infrastructure = {
+      inputs.nixos.follows = "nixos";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.pythoneda-shared-pythonlang-banner.follows =
+        "pythoneda-shared-pythonlang-banner";
+      inputs.pythoneda-shared-pythonlang-domain.follows =
+        "pythoneda-shared-pythonlang-domain";
+      url = "github:acmsl-def/licdata-artifact-infrastructure/0.0.2";
     };
     flake-utils.url = "github:numtide/flake-utils/v1.0.0";
     nixos.url = "github:NixOS/nixpkgs/24.05";
@@ -85,7 +103,7 @@
         nixpkgsRelease =
           builtins.replaceStrings [ "\n" ] [ "" ] "nixos-${nixosVersion}";
         shared = import "${pythoneda-shared-pythonlang-banner}/nix/shared.nix";
-        acmsl-licdata-artifact-application-for = { acmsl-licdata-artifact-events, python
+        acmsl-licdata-artifact-application-for = { acmsl-licdata-artifact-domain, acmsl-licdata-artifact-events, acmsl-licdata-artifact-infrastructure, python
           , pythoneda-shared-pythonlang-banner
           , pythoneda-shared-pythonlang-domain
           , pythoneda-shared-pythonlang-application
@@ -111,7 +129,9 @@
               desc = description;
               inherit homepage pname pythonMajorMinorVersion pythonpackage
                 version;
+              acmslLicdataArtifactDomain = acmsl-licdata-artifact-domain.version;
               acmslLicdataArtifactEvents = acmsl-licdata-artifact-events.version;
+              acmslLicdataArtifactInfrastructure = acmsl-licdata-artifact-infrastructure.version;
               package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
               pythonedaSharedPythonlangBanner =
                 pythoneda-shared-pythonlang-banner.version;
@@ -162,7 +182,9 @@
 
             nativeBuildInputs = with python.pkgs; [ pip poetry-core ];
             propagatedBuildInputs = with python.pkgs; [
+              acmsl-licdata-artifact-domain
               acmsl-licdata-artifact-events
+              acmsl-licdata-artifact-infrastructure
               pythoneda-shared-pythonlang-banner
               pythoneda-shared-pythonlang-domain
               pythoneda-shared-pythonlang-application
@@ -324,8 +346,12 @@
           default = acmsl-licdata-artifact-application-python312;
           acmsl-licdata-artifact-application-python38 =
             pythoneda-acmsl-licdata-artifact-application-for {
+              acmsl-licdata-artifact-domain =
+                acmsl-licdata-artifact-domain.packages.${system}.acmsl-licdata-artifact-domain-python38;
               acmsl-licdata-artifact-events =
                 acmsl-licdata-artifact-events.packages.${system}.acmsl-licdata-artifact-events-python38;
+              acmsl-licdata-artifact-infrastructure =
+                acmsl-licdata-artifact-infrastructure.packages.${system}.acmsl-licdata-artifact-infrastructure-python38;
               python = pkgs.python38;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python38;
@@ -338,8 +364,12 @@
             };
           acmsl-licdata-artifact-application-python39 =
             acmsl-licdata-artifact-application-for {
+              acmsl-licdata-artifact-domain =
+                acmsl-licdata-artifact-domain.packages.${system}.acmsl-licdata-artifact-domain-python39;
               acmsl-licdata-artifact-events =
                 acmsl-licdata-artifact-events.packages.${system}.acmsl-licdata-artifact-events-python39;
+              acmsl-licdata-artifact-infrastructure =
+                acmsl-licdata-artifact-infrastructure.packages.${system}.acmsl-licdata-artifact-infrastructure-python39;
               python = pkgs.python39;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python39;
@@ -352,10 +382,12 @@
             };
           acmsl-licdata-artifact-application-python310 =
             acmsl-licdata-artifact-application-for {
-              azure-functions =
-                azure-functions.packages.${system}.azure-functions-python310;
+              acmsl-licdata-artifact-domain =
+                acmsl-licdata-artifact-domain.packages.${system}.acmsl-licdata-artifact-domain-python310;
               acmsl-licdata-artifact-events =
                 acmsl-licdata-artifact-events.packages.${system}.acmsl-licdata-artifact-events-python310;
+              acmsl-licdata-artifact-infrastructure =
+                acmsl-licdata-artifact-infrastructure.packages.${system}.acmsl-licdata-artifact-infrastructure-python310;
               python = pkgs.python310;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python310;
@@ -368,8 +400,12 @@
             };
           acmsl-licdata-artifact-application-python311 =
             acmsl-licdata-artifact-application-for {
+              acmsl-licdata-artifact-domain =
+                acmsl-licdata-artifact-domain.packages.${system}.acmsl-licdata-artifact-domain-python311;
               acmsl-licdata-artifact-events =
                 acmsl-licdata-artifact-events.packages.${system}.acmsl-licdata-artifact-events-python311;
+              acmsl-licdata-artifact-infrastructure =
+                acmsl-licdata-artifact-infrastructure.packages.${system}.acmsl-licdata-artifact-infrastructure-python311;
               python = pkgs.python311;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python311;
@@ -382,8 +418,12 @@
             };
           acmsl-licdata-artifact-application-python312 =
             acmsl-licdata-artifact-application-for {
+              acmsl-licdata-artifact-domain =
+                acmsl-licdata-artifact-domain.packages.${system}.acmsl-licdata-artifact-domain-python312;
               acmsl-licdata-artifact-events =
                 acmsl-licdata-artifact-events.packages.${system}.acmsl-licdata-artifact-events-python312;
+              acmsl-licdata-artifact-infrastructure =
+                acmsl-licdata-artifact-infrastructure.packages.${system}.acmsl-licdata-artifact-infrastructure-python38;
               python = pkgs.python312;
               pythoneda-shared-pythonlang-banner =
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python312;
