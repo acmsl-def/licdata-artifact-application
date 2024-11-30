@@ -76,7 +76,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-artf-def/application/0.0.42";
+      url = "github:pythoneda-shared-pythonlang-artf-def/application/0.0.43";
     };
   };
   outputs = inputs:
