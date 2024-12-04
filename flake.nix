@@ -26,7 +26,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:acmsl-def/licdata-artifact-domain/0.0.12";
+      url = "github:acmsl-def/licdata-artifact-domain/0.0.13";
     };
     acmsl-licdata-artifact-events = {
       inputs.nixos.follows = "nixos";
@@ -44,7 +44,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:acmsl-def/licdata-artifact-infrastructure/0.0.6";
+      url = "github:acmsl-def/licdata-artifact-infrastructure/0.0.7";
     };
     flake-utils.url = "github:numtide/flake-utils/v1.0.0";
     nixos.url = "github:NixOS/nixpkgs/24.05";
@@ -67,7 +67,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-def/application/0.0.90";
+      url = "github:pythoneda-shared-pythonlang-def/application/0.0.91";
     };
     pythoneda-shared-pythonlang-artf-application = {
       inputs.flake-utils.follows = "flake-utils";
@@ -76,7 +76,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-artf-def/application/0.0.44";
+      url = "github:pythoneda-shared-pythonlang-artf-def/application/0.0.45";
     };
   };
   outputs = inputs:
@@ -85,8 +85,8 @@
       let
         org = "acmsl";
         repo = "licdata-artifact-application";
-        version = "0.0.1";
-        sha256 = "1pf056125irapidvk43yv7vywfl5a95wnv9i7bnqs1mmhxjnxjmp";
+        version = "0.0.2";
+        sha256 = "18h8vssvsgzi2wy4qm1b8xi9in12f0hsmckpvdr2c8nksh66fakb";
         pname = "${org}-${repo}";
         pythonpackage = "org.acmsl.artifact.licdata.application";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
