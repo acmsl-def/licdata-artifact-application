@@ -26,7 +26,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:acmsl-def/licdata-artifact-domain/0.0.23";
+      url = "github:acmsl-def/licdata-artifact-domain/0.0.26";
     };
     acmsl-licdata-artifact-events = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,7 +35,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:acmsl-def/licdata-artifact-events/0.0.17";
+      url = "github:acmsl-def/licdata-artifact-events/0.0.18";
     };
     acmsl-licdata-artifact-infrastructure = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,7 +44,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:acmsl-def/licdata-artifact-infrastructure/0.0.15";
+      url = "github:acmsl-def/licdata-artifact-infrastructure/0.0.16";
     };
     flake-utils.url = "github:numtide/flake-utils/v1.0.0";
     nixpkgs.url = "github:NixOS/nixpkgs/24.05";
@@ -58,7 +58,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
-      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.102";
+      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.103";
     };
     pythoneda-shared-pythonlang-application = {
       inputs.flake-utils.follows = "flake-utils";
@@ -67,7 +67,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-def/application/0.0.99";
+      url = "github:pythoneda-shared-pythonlang-def/application/0.0.100";
     };
     pythoneda-shared-pythonlang-artf-application = {
       inputs.flake-utils.follows = "flake-utils";
@@ -76,7 +76,16 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-artf-def/application/0.0.51";
+      url = "github:pythoneda-shared-pythonlang-artf-def/application/0.0.52";
+    };
+    pythoneda-shared-runtime-secrets-events = {
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.pythoneda-shared-pythonlang-banner.follows =
+        "pythoneda-shared-pythonlang-banner";
+      inputs.pythoneda-shared-pythonlang-domain.follows =
+        "pythoneda-shared-pythonlang-domain";
+      url = "github:pythoneda-shared-runtime-def/secrets-events/0.0.5";
     };
   };
   outputs = inputs:
@@ -107,7 +116,8 @@
           , pythoneda-shared-pythonlang-banner
           , pythoneda-shared-pythonlang-domain
           , pythoneda-shared-pythonlang-application
-          , pythoneda-shared-pythonlang-artf-application}:
+          , pythoneda-shared-pythonlang-artf-application
+          , pythoneda-shared-runtime-secrets-events}:
           let
             pnameWithUnderscores =
               builtins.replaceStrings [ "-" ] [ "_" ] pname;
@@ -140,6 +150,8 @@
                 pythoneda-shared-pythonlang-application.version;
               pythonedaSharedPythonlangArtfApplication =
                 pythoneda-shared-pythonlang-artf-application.version;
+              pythonedaSharedRuntimeSecretsEvents =
+                pythoneda-shared-runtime-secrets-events.version;
               src = pyprojectTomlTemplate;
             };
             bannerTemplateFile = ./templates/banner.py.template;
@@ -188,6 +200,7 @@
               pythoneda-shared-pythonlang-domain
               pythoneda-shared-pythonlang-application
               pythoneda-shared-pythonlang-artf-application
+              pythoneda-shared-runtime-secrets-events
             ];
 
             # pythonImportsCheck = [ pythonpackage ];
@@ -360,6 +373,8 @@
                 pythoneda-shared-pythonlang-application.packages.${system}.pythoneda-shared-pythonlang-application-python39;
               pythoneda-shared-pythonlang-artf-application =
                 pythoneda-shared-pythonlang-artf-application.packages.${system}.pythoneda-shared-pythonlang-artf-application-python39;
+              pythoneda-shared-runtime-secrets-events =
+                pythoneda-shared-runtime-secrets-events.packages.${system}.pythoneda-shared-runtime-secrets-events-python39;
             };
           acmsl-licdata-artifact-application-python310 =
             acmsl-licdata-artifact-application-for {
@@ -378,6 +393,8 @@
                 pythoneda-shared-pythonlang-application.packages.${system}.pythoneda-shared-pythonlang-application-python310;
               pythoneda-shared-pythonlang-artf-application =
                 pythoneda-shared-pythonlang-artf-application.packages.${system}.pythoneda-shared-pythonlang-artf-application-python310;
+              pythoneda-shared-runtime-secrets-events =
+                pythoneda-shared-runtime-secrets-events.packages.${system}.pythoneda-shared-runtime-secrets-events-python310;
             };
           acmsl-licdata-artifact-application-python311 =
             acmsl-licdata-artifact-application-for {
@@ -396,6 +413,8 @@
                 pythoneda-shared-pythonlang-application.packages.${system}.pythoneda-shared-pythonlang-application-python311;
               pythoneda-shared-pythonlang-artf-application =
                 pythoneda-shared-pythonlang-artf-application.packages.${system}.pythoneda-shared-pythonlang-artf-application-python311;
+              pythoneda-shared-runtime-secrets-events =
+                pythoneda-shared-runtime-secrets-events.packages.${system}.pythoneda-shared-runtime-secrets-events-python311;
             };
           acmsl-licdata-artifact-application-python312 =
             acmsl-licdata-artifact-application-for {
@@ -414,6 +433,8 @@
                 pythoneda-shared-pythonlang-application.packages.${system}.pythoneda-shared-pythonlang-application-python312;
               pythoneda-shared-pythonlang-artf-application =
                 pythoneda-shared-pythonlang-artf-application.packages.${system}.pythoneda-shared-pythonlang-artf-application-python312;
+              pythoneda-shared-runtime-secrets-events =
+                pythoneda-shared-runtime-secrets-events.packages.${system}.pythoneda-shared-runtime-secrets-events-python312;
             };
           acmsl-licdata-artifact-application-python313 =
             pythoneda-acmsl-licdata-artifact-application-for {
@@ -432,6 +453,8 @@
                 pythoneda-shared-pythonlang-application.packages.${system}.pythoneda-shared-pythonlang-application-python313;
               pythoneda-shared-pythonlang-artf-application =
                 pythoneda-shared-pythonlang-artf-application.packages.${system}.pythoneda-shared-pythonlang-artf-application-python313;
+              pythoneda-shared-runtime-secrets-events =
+                pythoneda-shared-runtime-secrets-events.packages.${system}.pythoneda-shared-runtime-secrets-events-python313;
             };
         };
       });
