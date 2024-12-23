@@ -58,8 +58,8 @@ class @banner_class@(Banner):
         :return: The banner text.
         :rtype: List[str]
         """
-        line1_first_half, line1_second_half = self.center(self.org, 24)
-        line2_first_half, line2_second_half = self.center(self.repo, 25)
+        line1_first_half, line1_second_half = self.center(self.org, 20)
+        line2_first_half, line2_second_half = self.center(self.repo, 22)
         result = []
         result.append(f" \033[35m _\033[33m _ \033[0m     \033[35m   _ \033[0m     \033[36m _  \033[0m      \033[0m")
         result.append(f" \033[35m|\033[0m \033[33m(_)\033[0m     \033[35m  | |\033[0m  \033[35m{self._pythoneda_dep_count:>3}\033[36m| |\033[36m{self._dep_count}         \033[37m(c) 2024-today acm-sl.com\033[0m")
@@ -67,8 +67,8 @@ class @banner_class@(Banner):
         result.append(f"\033[0m \033[35m|\033[0m \033[33m| |\033[36m/ __\033[35m/ _` |\033[33m/ _` \033[36m| __\033[35m/ _` |    \033[33mhttps://github.com/{self.org}/{self.repo}/tree/{self.tag}\033[0m")
         result.append(f"\033[0m \033[35m|\033[0m \033[33m| |\033[36m (_\033[35m| (_| |\033[33m (_| \033[36m| |\033[35m| (_| |    \033[34mhttps://github.com/{self.org}\033[0m")
         result.append(f"\033[0m \033[35m|_\033[33m|_|\033[36m\\___\\\033[35m__,_|\033[33m\\__,_|\033[36m\\__\033[35m\\__,_|    \033[35mhttps://github.com/nixos/nixpkgs/tree/{self.nixpkgs_release}\033[0m")
-        result.append(f"    \033[37mA       {' '*line1_first_half}\033[34m{self.org.upper()}{' '*line1_second_half}\033[32mhttps://docs.python.org/{self.python_version}\033[0m")
-        result.append(f"           {' '*line2_first_half}\033[33m{self.repo.upper()}{' '*line2_second_half}\033[37mhttps://patreon.com/rydnr\033[0m")
+        result.append(f"    \033[37mA       {' '*line1_first_half}\033[34m{self.org.upper()}{' '*line1_second_half}    \033[32mhttps://docs.python.org/{self.python_version}\033[0m")
+        result.append(f"           {' '*line2_first_half}\033[33m{self.repo.upper()}{' '*line2_second_half} \033[37mhttps://patreon.com/rydnr\033[0m")
 
         return result
 
