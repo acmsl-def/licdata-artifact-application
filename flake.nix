@@ -26,7 +26,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:acmsl-def/licdata-artifact-domain/0.0.30";
+      url = "github:acmsl-def/licdata-artifact-domain/0.0.31";
     };
     acmsl-licdata-artifact-events = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,7 +44,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:acmsl-def/licdata-artifact-infrastructure/0.0.20";
+      url = "github:acmsl-def/licdata-artifact-infrastructure/0.0.21";
     };
     flake-utils.url = "github:numtide/flake-utils/v1.0.0";
     nixpkgs.url = "github:NixOS/nixpkgs/24.05";
@@ -67,7 +67,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-def/application/0.0.106";
+      url = "github:pythoneda-shared-pythonlang-def/application/0.0.107";
     };
     pythoneda-shared-pythonlang-artf-application = {
       inputs.flake-utils.follows = "flake-utils";
@@ -76,7 +76,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-artf-def/application/0.0.58";
+      url = "github:pythoneda-shared-pythonlang-artf-def/application/0.0.59";
     };
     pythoneda-shared-runtime-secrets-events = {
       inputs.flake-utils.follows = "flake-utils";
@@ -94,8 +94,8 @@
       let
         org = "acmsl";
         repo = "licdata-artifact-application";
-        version = "0.0.5";
-        sha256 = "0pywvs4kp9arlw7ad78r56vld5d6ibzygvld40ma94dxsyxhw477";
+        version = "0.0.6";
+        sha256 = "1g0y298pa3qlcck5gz9mvn6664bw7yn0k2gw5fh58i99xwkm4sjc";
         pname = "${org}-${repo}";
         pythonpackage = "org.acmsl.artifact.licdata.application";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
