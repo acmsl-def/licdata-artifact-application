@@ -358,16 +358,16 @@
         "pythoneda-shared-runtime-secrets-events-infrastructure": "pythoneda-shared-runtime-secrets-events-infrastructure"
       },
       "locked": {
-        "lastModified": 1736102787,
-        "narHash": "sha256-vIk7eMM3sXSbAm8CrNqIWecOYJFnYCpAr6ejE1RkYTo=",
+        "lastModified": 1736147373,
+        "narHash": "sha256-9XKMidJEM4QVtcV8NniTGdqckinjcW9XdTOuKcW4+ZE=",
         "owner": "acmsl-def",
         "repo": "licdata-artifact-infrastructure",
-        "rev": "50642ad1bd165fd12562002b5179e702d9cd167d",
+        "rev": "a2f509fd20cea67fa64d51868168ca26160832a4",
         "type": "github"
       },
       "original": {
         "owner": "acmsl-def",
-        "ref": "0.0.21",
+        "ref": "0.0.22",
         "repo": "licdata-artifact-infrastructure",
         "type": "github"
       }
