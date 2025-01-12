@@ -51,7 +51,7 @@
     pythoneda-shared-pythonlang-banner = {
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
-      url = "github:pythoneda-shared-pythonlang-def/banner/0.0.74";
+      url = "github:pythoneda-shared-pythonlang-def/banner/0.0.75";
     };
     pythoneda-shared-pythonlang-domain = {
       inputs.flake-utils.follows = "flake-utils";
@@ -207,7 +207,7 @@
 
             unpackPhase = ''
               command cp -r ${src} .
-              sourceRoot=$(ls | grep -v env-vars)
+              sourceRoot=$(command ls | command grep -v env-vars)
               command chmod -R +w $sourceRoot
               command cp ${pyprojectToml} $sourceRoot/pyproject.toml
               command cp ${bannerTemplate} $sourceRoot/${banner_file}
@@ -227,7 +227,7 @@
                 --replace "@BANNER@" "$out/bin/banner.sh"
             '';
 
-            postInstall = ''
+            postInstall = with python.pkgs; ''
               command pushd /build/$sourceRoot
               for f in $(command find . -name '__init__.py' | sed 's ^\./  g'); do
                 if [[ ! -e $out/lib/python${pythonMajorMinorVersion}/site-packages/$f ]]; then
@@ -236,7 +236,7 @@
                 fi
               done
               command popd
-              command mkdir $out/dist $out/bin
+              command mkdir -p $out/bin $out/dist $out/deps/flakes $out/deps/nixpkgs
               command cp dist/${wheelName} $out/dist
               command cp /build/$sourceRoot/entrypoint.sh $out/bin/${entrypoint}.sh
               command chmod +x $out/bin/${entrypoint}.sh
@@ -245,6 +245,16 @@
               command echo "command echo 'Running $out/bin/banner'" >> $out/bin/banner.sh
               command echo "${python}/bin/python $out/lib/python${pythonMajorMinorVersion}/site-packages/${banner_file} \$@" >> $out/bin/banner.sh
               command chmod +x $out/bin/banner.sh
+              for dep in ${acmsl-licdata-artifact-domain} ${acmsl-licdata-artifact-events} ${acmsl-licdata-artifact-infrastructure} ${pythoneda-shared-pythonlang-banner} ${pythoneda-shared-pythonlang-domain} ${pythoneda-shared-pythonlang-application} ${pythoneda-shared-pythonlang-artf-application} ${pythoneda-shared-runtime-secrets-events}; do
+                command cp -r $dep/dist/* $out/deps || true
+                if [ -e $dep/deps ]; then
+                  command cp -r $dep/deps/* $out/deps || true
+                fi
+                METADATA=$dep/lib/python${pythonMajorMinorVersion}/site-packages/*.dist-info/METADATA
+                NAME="$(command grep -m 1 '^Name: ' $METADATA | command cut -d ' ' -f 2)"
+                VERSION="$(command grep -m 1 '^Version: ' $METADATA | command cut -d ' ' -f 2)"
+                command ln -s $dep $out/deps/flakes/$NAME-$VERSION || true
+              done
             '';
 
             meta = with pkgs.lib; {
